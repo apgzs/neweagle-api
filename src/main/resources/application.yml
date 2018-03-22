@@ -2,5 +2,4 @@ spring:
   application:
     name: neweagle-api
   profiles:
-    active: local
-    #@profileActive@
+    active: @profileActive@

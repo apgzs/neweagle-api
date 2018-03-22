@@ -1,4 +1,4 @@
-package com.neweagle.api.module.sys.mapper;
+package com.neweagle.api.comm.plugin.mybatisplus;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 

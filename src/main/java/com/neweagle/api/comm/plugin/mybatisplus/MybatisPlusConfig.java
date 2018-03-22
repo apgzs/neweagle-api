@@ -10,6 +10,7 @@ import net.sf.jsqlparser.expression.LongValue;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class MybatisPlusConfig {
      * mybatis-plus SQL执行效率插件【生产环境可以关闭】
      */
     @Bean
+    @Profile({"dev","local"})// 设置 dev local 环境开启
     public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
     }
@@ -71,7 +73,7 @@ public class MybatisPlusConfig {
 //            public boolean doFilter(MetaObject metaObject) {
 //                MappedStatement ms = PluginUtils.getMappedStatement(metaObject);
 //                // 过滤自定义查询此时无租户信息约束【 麻花藤 】出现
-//                if ("com.baomidou.springboot.mapper.UserMapper.selectListBySQL".equals(ms.getId())) {
+//                if ("com.baomidou.springboot.mapper.AppUserMapper.selectListBySQL".equals(ms.getId())) {
 //                    return true;
 //                }
 //                return false;

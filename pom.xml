@@ -52,6 +52,9 @@
 		<mybatisplus.version>2.2.0</mybatisplus.version>
 		<fastjson.version>1.2.47</fastjson.version>
 		<druid-spring-boot-starter>1.1.9</druid-spring-boot-starter>
+		<commons-lang3.version>3.7</commons-lang3.version>
+		<httpclient.version>4.5.5</httpclient.version>
+		<jjwt.version>0.9.0</jjwt.version>
 	</properties>
 
 	<dependencies>
@@ -59,7 +62,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -69,6 +71,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -103,6 +113,25 @@
 			<artifactId>druid-spring-boot-starter</artifactId>
 			<version>${druid-spring-boot-starter}</version>
 		</dependency>
+		<!--lang3-->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		<!--httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<!-- jjwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -114,10 +143,21 @@
 				</includes>
 			</resource>
 			<resource>
-				<directory>src/main/resources</directory>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
 				<includes>
-					<include>**.*</include>
+					<include>**/application*.yml</include>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
 				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<excludes>
+					<exclude>**/application*.yml</exclude>
+					<exclude>**/*.properties</exclude>
+					<exclude>**/*.xml</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<plugins>

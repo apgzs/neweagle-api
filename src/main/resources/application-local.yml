@@ -4,6 +4,13 @@ spring:
         charset: UTF-8
         enabled: true
         force: true
+  # Redis Config
+  redis:
+      database: 1
+      host: 127.0.0.1
+      port: 6379
+      password:
+  # Datasource
   datasource:
        # schema: classpath:/db/schema-mysql.sql
         data: classpath:/db/data-mysql.sql
@@ -26,19 +33,26 @@ spring:
         filters: stat,wall,log4j
         # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
-# server
+
+# Security
+security:
+  jwt:
+    secret: k09BQnaF
+    expiration: 1728000 #token过期时间
+
+# Server
 server:
   port: 81
   tomcat:
     accesslog:
       debug: true #请求响应数据调试
       uri-encoding: UTF-8
-#mybatis
+#Mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:/com/neweagle/api/module/*/mapper/xml/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.neweagle.api.module.*.entity
-  typeEnumsPackage: com.neweagle.api.module.*.entity.enums
+  typeEnumsPackage: com.neweagle.api.comm.enums
   global-config:
     #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
     id-type: 0
