@@ -109,9 +109,14 @@
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
-				<filtering>false</filtering>
 				<includes>
-					<include>**/mapper/*.xml</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**.*</include>
 				</includes>
 			</resource>
 		</resources>
@@ -119,6 +124,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
