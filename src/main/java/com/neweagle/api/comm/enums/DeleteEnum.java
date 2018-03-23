@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.io.Serializable;
 
 /**
- * 删除枚举
+ * 删除标记枚举
  */
 public enum DeleteEnum implements IEnum {
     NORMAL(0, "正常"),

@@ -1,9 +1,6 @@
 package com.neweagle.api.module.sys.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.neweagle.api.comm.plugin.security.TokenUtil;
-import com.neweagle.api.comm.utils.DateHelper;
-import com.neweagle.api.comm.utils.StringHelper;
 import com.neweagle.api.comm.web.base.SuperController;
 import com.neweagle.api.comm.web.json.JsonResult;
 import com.neweagle.api.module.sys.service.IAppUserService;
@@ -47,7 +44,7 @@ public class AppUserController extends SuperController {
     private TokenUtil jwtTokenUtil;
 
     /**
-     * Create authentication token map.
+     * 获取token
      * @param username the username
      * @param password the password
      * @return the map
