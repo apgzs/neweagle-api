@@ -13,5 +13,8 @@ public class InvalidCaptchaException extends BusinessException {
     public InvalidCaptchaException(String message) {
         super(message);
     }
+    public InvalidCaptchaException() {
+        super("无效验证码!");
+    }
 
 }

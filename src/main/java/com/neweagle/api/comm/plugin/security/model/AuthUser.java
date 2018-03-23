@@ -1,6 +1,7 @@
 package com.neweagle.api.comm.plugin.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.neweagle.api.comm.enums.EnableEnum;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,7 +37,9 @@ public class AuthUser extends AbstractAuthUser {
     /**
      * 冻结
      */
-    private boolean enabled;
+    private EnableEnum enabled;
+
+
 
 
     @Override
@@ -45,6 +48,15 @@ public class AuthUser extends AbstractAuthUser {
         Set<GrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority(TRIP_USER_ROLE));
         return authorities;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        if ( this.enabled==EnableEnum.ENABLE){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 

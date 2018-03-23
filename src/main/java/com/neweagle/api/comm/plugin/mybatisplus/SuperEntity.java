@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.neweagle.api.comm.enums.DeleteEnum;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -34,6 +35,11 @@ public class SuperEntity<T extends Model> extends Model<T> {
      */
     @TableField(value="update_time",fill = FieldFill.UPDATE)
     private Long updateTime;
+    /**
+     * 删除标记  需要逻辑删除的时候启用
+     */
+//    @TableField(value="is_delete",fill = FieldFill.INSERT)
+//    private DeleteEnum isDelete;
 
     @Override
     protected Serializable pkVal() {

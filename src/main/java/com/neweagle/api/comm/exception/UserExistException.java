@@ -13,5 +13,8 @@ public class UserExistException extends BusinessException {
     public UserExistException(String message) {
         super(message);
     }
+    public UserExistException() {
+        super("用户已存在!");
+    }
 
 }

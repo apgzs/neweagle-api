@@ -3,7 +3,9 @@ package com.neweagle.api.module.sys.controller;
 import com.neweagle.api.comm.plugin.security.TokenUtil;
 import com.neweagle.api.comm.web.base.SuperController;
 import com.neweagle.api.comm.web.json.JsonResult;
+import com.neweagle.api.module.sys.entity.AppUser;
 import com.neweagle.api.module.sys.service.IAppUserService;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,8 +13,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Pattern;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +25,7 @@ import java.util.Map;
  * 用户类控制器
  * <p>
  */
+@Validated
 @RestController
 @RequestMapping("/sys/appuser")
 public class AppUserController extends SuperController {
@@ -42,6 +48,8 @@ public class AppUserController extends SuperController {
      */
     @Autowired
     private TokenUtil jwtTokenUtil;
+
+
 
     /**
      * 获取token
@@ -79,7 +87,7 @@ public class AppUserController extends SuperController {
      * @param token
      * @return Object
      */
-    @GetMapping(value = "/refresh", produces = "application/json; charset=UTF-8")
+    @GetMapping(value = "/v1/refresh-token")
     public Object refreshAndGetAuthenticationToken(String token) {
         //重新生成Token
         String username = jwtTokenUtil.getUsernameFromToken(token);
@@ -102,12 +110,16 @@ public class AppUserController extends SuperController {
      * @param password
      * @return
      */
-    @ResponseBody
     @PostMapping("/v1/register")
-    public Object register(String mobile,String verifyCode,String password,Integer userType,Integer source,String position){
-        Map map = new HashMap();
-
-        return JsonResult.success(map);
+    public Object register(
+            @Pattern(regexp = "1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}", message = "手机号码格式错误")@RequestParam("mobile")String mobile,
+            @Pattern(regexp = "\\d{4}", message = "验证码为6位数字") String verifyCode,
+            @Length(min = 6, max = 20, message = "密码长度为6到20")String password) throws Exception{
+        if (appUserService.register(mobile,verifyCode,password)){
+            return JsonResult.success();
+        }else {
+            return JsonResult.error("注册失败，请稍后再试！");
+        }
     }
 
 

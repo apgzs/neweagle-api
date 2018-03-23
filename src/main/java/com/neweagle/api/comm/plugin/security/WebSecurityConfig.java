@@ -21,7 +21,9 @@ public class WebSecurityConfig extends AbstractWebSecurityConfig {
         //忽略权限校验的访问路径
         web.ignoring()
                 .antMatchers(
-                        "/sys/appuser/*/token"
+                        "/sys/appuser/*/token",
+                        "/sys/appuser/*/register",
+                        "/sys/appuser/*/refresh-token"
 
                 );
     }
@@ -31,11 +33,8 @@ public class WebSecurityConfig extends AbstractWebSecurityConfig {
         security
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,
-                        "/order/pay/back/*/ali-pay.json",
-                        "/order/pay/back/*/wx-pay.json",
-                        "/sys/auth/*/token-by-password",
-                        "/sys/auth/*/token-by-verifycode",
-                        "/sys/user/*/modify-password").permitAll();
+                        "/sys/appuser/*/token",
+                        "/sys/appuser/v1/register").permitAll();
         super.configure(security);
     }
 }

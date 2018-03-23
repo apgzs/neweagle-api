@@ -1,6 +1,8 @@
 package com.neweagle.api.comm.plugin.mybatisplus;
 
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
+import com.neweagle.api.comm.enums.EnableEnum;
+import com.neweagle.api.comm.utils.DateHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
@@ -14,14 +16,23 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class MyMetaObjectHandler extends MetaObjectHandler {
 
-
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("新增的时候干点不可描述的事情");
+        //新增的时候插入创建时间
+        Object createTime = getFieldValByName("createTime", metaObject);
+        if (createTime == null) {
+            setFieldValByName("createTime", DateHelper.getCurrentTimeMillis(), metaObject);
+        }
+        //新增的时候插入启用禁用状态
+        Object enabled = getFieldValByName("enabled", metaObject);
+        if (enabled == null) {
+            setFieldValByName("enabled", EnableEnum.ENABLE, metaObject);
+        }
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.info("更新的时候干点不可描述的事情");
+        //更新的时候修改更新时间
+        setFieldValByName("updateTime", DateHelper.getCurrentTimeMillis(), metaObject);
     }
 }

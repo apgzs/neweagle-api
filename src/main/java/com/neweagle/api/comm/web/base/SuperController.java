@@ -11,6 +11,7 @@ import com.neweagle.api.comm.web.json.ReturnCode;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.validation.ConstraintViolationException;
 import java.beans.PropertyEditorSupport;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tjp on 2017/6/30.
@@ -63,6 +65,19 @@ public class SuperController {
     @ResponseStatus(HttpStatus.OK)
     public JsonResult handleBusinessException(BusinessException ex) {
         return makeErrorMessage("1001", "Business Error", ex.getMessage());
+    }
+
+    /**
+     * Handle business exception map.
+     *
+     * @param ex the ex
+     * @return the map
+     */
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Object handleBusinessException(BadCredentialsException ex) {
+        //用户名或密码错误
+        return makeErrorMessage(ReturnCode.INVALID_GRANT, "Bad credentials", ex.getMessage());
     }
 
     /**
