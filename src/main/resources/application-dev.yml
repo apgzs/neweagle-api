@@ -15,7 +15,7 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         url: jdbc:mysql://127.0.0.1:3306/neweagle-api?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
         username: root
-        password: 123123
+        password: ENC(BJiagLixFDJphPF0fw/6Tw==)
         driver-class-name: com.mysql.jdbc.Driver
         max-active: 20
         initial-size: 1
@@ -45,6 +45,12 @@ server:
     accesslog:
       debug: true #请求响应数据调试
       uri-encoding: UTF-8
+
+# Jasypt
+jasypt:
+  encryptor:
+    password: BdaObXaELAA
+
 #Mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:/com/neweagle/api/module/*/mapper/xml/*Mapper.xml
