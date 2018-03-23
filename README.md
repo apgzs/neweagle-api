@@ -1,6 +1,6 @@
 <p>
-  <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.baomidou%22%20AND%20a%3A%22mybatis-plus%22">
-    <img alt="maven" src="https://img.shields.io/maven-central/v/com.baomidou/mybatis-plus.svg?style=flat-square">
+  <a href="#">
+    <img alt="maven" src="https://img.shields.io/badge/version-v1.0.0-green.svg">
   </a>
 
   <a href="https://www.apache.org/licenses/LICENSE-2.0">
