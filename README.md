@@ -20,11 +20,12 @@
 - .....
 
 持续更新中。。。
-rabbitmaq
-elasticsearch
-lts分布式任务调度
-基于vue构建的前后端分离的管理权限管理平台
+- rabbitmaq
+- elasticsearch
+- lts分布式任务调度
+- 基于vue构建的前后端分离的管理权限管理平台
 
-分模块化
 
-微服务化
+- 分模块化
+
+- 微服务化
