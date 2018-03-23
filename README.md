@@ -1,4 +1,8 @@
 <p>
+
+  <a href="https://gitee.com/xinyingkeji/neweagle-api/wikis">
+    <img alt="maven" src="https://img.shields.io/badge/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3-10%25-orange.svg">
+  </a>
   <a href="#">
     <img alt="maven" src="https://img.shields.io/badge/version-v1.0.0-green.svg">
   </a>
