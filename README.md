@@ -6,7 +6,7 @@
 - 为IntelliJ IDEA安装lombok插件并重启
 - 用git/svn clone项目
 - 启动redis
-- 修改配置文件中的redis、mysql配置
+- 修改配置文件中的redis、mysql配置  注意：配置文件中的密码使用jasypt进行加密，可在test包中JasypTest类中获得加密后的密码，不加密去掉ENC(）即可  直接写上明文密码
 - 不同的配置环境打包, 如本地环境: mvn clean package -Plocal
 
  **技术栈** 
