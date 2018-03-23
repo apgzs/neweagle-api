@@ -55,6 +55,7 @@
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<httpclient.version>4.5.5</httpclient.version>
 		<jjwt.version>0.9.0</jjwt.version>
+		<jasypt-spring-boot-starter.version>2.0.0</jasypt-spring-boot-starter.version>
 	</properties>
 
 	<dependencies>
@@ -130,6 +131,12 @@
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>${jjwt.version}</version>
+		</dependency>
+		<!--jasypt-->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>${jasypt-spring-boot-starter.version}</version>
 		</dependency>
 
 	</dependencies>
