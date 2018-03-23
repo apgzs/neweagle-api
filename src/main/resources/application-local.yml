@@ -12,8 +12,6 @@ spring:
       password:
   # Datasource
   datasource:
-       # schema: classpath:/db/schema-mysql.sql
-        data: classpath:/db/data-mysql.sql
         type: com.alibaba.druid.pool.DruidDataSource
         url: jdbc:mysql://127.0.0.1:3306/neweagle-api?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
         username: root
@@ -42,7 +40,7 @@ security:
 
 # Server
 server:
-  port: 81
+  port: 80
   tomcat:
     accesslog:
       debug: true #请求响应数据调试
