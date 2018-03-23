@@ -7,6 +7,13 @@
 - 用git/svn clone项目
 - 启动redis
 - 修改配置文件中的redis、mysql配置
-- 不同的配置环境打包 如：本地环境 ```
-mvn clean package -Plocal
-```
+- 不同的配置环境打包, 如本地环境: mvn clean package -Plocal
+
+ **三、技术栈** 
+- springboot2.0
+- spring security
+- jwt
+- mybatis-plus【多租户、公共字段动态插入等，具体详见官网[链接](http://mp.baomidou.com)】
+- redis
+- druid
+- jasypt
