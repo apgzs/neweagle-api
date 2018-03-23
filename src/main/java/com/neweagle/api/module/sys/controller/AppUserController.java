@@ -4,6 +4,7 @@ import com.neweagle.api.comm.plugin.security.TokenUtil;
 import com.neweagle.api.comm.web.base.SuperController;
 import com.neweagle.api.comm.web.json.JsonResult;
 import com.neweagle.api.module.sys.entity.AppUser;
+import com.neweagle.api.module.sys.mq.MqSender;
 import com.neweagle.api.module.sys.service.IAppUserService;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class AppUserController extends SuperController {
 
 
 
+
     /**
      * 获取token
      * @param username the username
@@ -62,7 +64,6 @@ public class AppUserController extends SuperController {
             @RequestParam("username") String username,
             @RequestParam("password") String password
     ) {
-
         //完成授权
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password)

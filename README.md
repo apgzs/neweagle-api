@@ -15,7 +15,7 @@
 **适用对象** 
 - 应小伙伴反应现在好多框架搞得好复杂看不懂、很多中小项目不需要用到这种框架，公司以前的项目也是很杂乱、有时候只是想舒舒服服地写个接口都无从下手。SO你如果有遇到这种问题这个项目也许能帮得到你！
 
- **Quick start** 
+ **Quick Start** 
 - 建议使用IntelliJ IDEA导入此项目
 - 为IntelliJ IDEA安装lombok插件并重启
 - 用git/svn clone项目
@@ -31,14 +31,13 @@
 - redis
 - druid
 - jasypt
+- rabbitmq
 - .....
 
 持续更新中。。。
-- rabbitmq
 - elasticsearch
 - lts分布式任务调度
 - 基于vue构建的前后端分离的管理权限管理平台
-
 
 - 分模块化
 

@@ -23,7 +23,8 @@ public class WebSecurityConfig extends AbstractWebSecurityConfig {
                 .antMatchers(
                         "/sys/appuser/*/token",
                         "/sys/appuser/*/register",
-                        "/sys/appuser/*/refresh-token"
+                        "/sys/appuser/*/refresh-token",
+                        "/druid/**"
 
                 );
     }
@@ -34,7 +35,8 @@ public class WebSecurityConfig extends AbstractWebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,
                         "/sys/appuser/*/token",
-                        "/sys/appuser/v1/register").permitAll();
+                        "/sys/appuser/v1/register"
+                        ).permitAll();
         super.configure(security);
     }
 }

@@ -10,6 +10,18 @@ spring:
       host: 127.0.0.1
       port: 6379
       password:
+  # Rabbitmq Config
+  rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: dev
+      password: ENC(BJiagLixFDJphPF0fw/6Tw==)
+      publisher-confirms: true
+      publisher-returns: true
+      template.mandatory: true
+      listener:
+           concurrency: 2      #最小消息监听线程数
+           max-concurrency: 2  #最大消息监听线程数
   # Datasource
   datasource:
         type: com.alibaba.druid.pool.DruidDataSource
