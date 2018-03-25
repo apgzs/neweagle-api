@@ -27,12 +27,14 @@
 - springboot2.0
 - spring security
 - jwt
+- auth
 - mybatis-plus【多租户、公共字段动态插入等，具体详见官网[链接](http://mp.baomidou.com)】
 - redis
 - druid
 - jasypt
 - rabbitmq
 - quartz【分布式形式，持久化】
+- 公共接口签名sign验证
 - .....
 
 持续更新中。。。
