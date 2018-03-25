@@ -20,13 +20,12 @@ import java.util.Map;
  * 所有请求的接口必须携带sign、timestamp参数
  * 签名方法是进行参数签名 具体见SignUtil类
  */
-@Component
 @Slf4j
 public class SignInterceptor implements HandlerInterceptor {
 
     public static final String VERIFY_FAIL_MSG = "The request parameter signature verification failed!";
 
-    public static final long SIGN_EXPIRE = 10000;//签名有效期
+    public static final long SIGN_EXPIRE = 30;//签名有效期  秒
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
@@ -43,7 +42,7 @@ public class SignInterceptor implements HandlerInterceptor {
         Map<String, Object> params = new HashMap();
         while (pNames.hasMoreElements()) {
             String pName = (String) pNames.nextElement();
-            if("sign".equals(pName))continue;
+            if("sign".equals(pName)||"[]".equals(pName))continue;
             Object pValue = request.getParameter(pName);
             params.put(pName, pValue);
         }

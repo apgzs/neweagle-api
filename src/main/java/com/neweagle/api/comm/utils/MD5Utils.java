@@ -1,44 +1,142 @@
 package com.neweagle.api.comm.utils;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Random;
+
+import org.apache.commons.codec.binary.Hex;
 
 /**
- * MD5加密工具类
+ * MD5加密解密工具类
+ *
  */
 public class MD5Utils {
-    public final static String MD5(String pwd) {
-        //用于加密的字符
-        char md5String[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'A', 'B', 'C', 'D', 'E', 'F' };
+
+    /**
+     * 普通MD5加密 01
+     */
+    public static String getStrMD5(String inStr) {
+        // 获取MD5实例
+        MessageDigest md5 = null;
         try {
-            //使用平台的默认字符集将此 String 编码为 byte序列，并将结果存储到一个新的 byte数组中
-            byte[] btInput = pwd.getBytes();
+            md5 = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return "";
+        }
 
-            //信息摘要是安全的单向哈希函数，它接收任意大小的数据，并输出固定长度的哈希值。
-            MessageDigest mdInst = MessageDigest.getInstance("MD5");
+        // 将加密字符串转换为字符数组
+        char[] charArray = inStr.toCharArray();
+        byte[] byteArray = new byte[charArray.length];
 
-            //MessageDigest对象通过使用 update方法处理数据， 使用指定的byte数组更新摘要
-            mdInst.update(btInput);
+        // 开始加密
+        for (int i = 0; i < charArray.length; i++)
+            byteArray[i] = (byte) charArray[i];
+        byte[] digest = md5.digest(byteArray);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < digest.length; i++) {
+            int var = digest[i] & 0xff;
+            if (var < 16)
+                sb.append("0");
+            sb.append(Integer.toHexString(var));
+        }
+        return sb.toString();
+    }
 
-            // 摘要更新之后，通过调用digest（）执行哈希计算，获得密文
-            byte[] md = mdInst.digest();
+    /**
+     * 普通MD5加密 02
+     */
+    public static String getStrrMD5(String password) {
 
-            // 把密文转换成十六进制的字符串形式
+        char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+        try {
+            byte strTemp[] = password.getBytes("UTF-8");
+            MessageDigest mdTemp = MessageDigest.getInstance("MD5");
+            mdTemp.update(strTemp);
+            byte md[] = mdTemp.digest();
             int j = md.length;
             char str[] = new char[j * 2];
             int k = 0;
-            for (int i = 0; i < j; i++) {   //  i = 0
-                byte byte0 = md[i];  //95
-                str[k++] = md5String[byte0 >>> 4 & 0xf];    //    5
-                str[k++] = md5String[byte0 & 0xf];   //   F
+            for (int i = 0; i < j; i++) {
+                byte byte0 = md[i];
+                str[k++] = hexDigits[byte0 >>> 4 & 15];
+                str[k++] = hexDigits[byte0 & 15];
             }
 
-            //返回经过加密后的字符串
             return new String(str);
-
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * MD5双重解密
+     */
+    public static String getconvertMD5(String inStr) {
+        char[] charArray = inStr.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            charArray[i] = (char) (charArray[i] ^ 't');
+        }
+        String str = String.valueOf(charArray);
+        return str;
+    }
+
+    /**
+     * 使用Apache的Hex类实现Hex(16进制字符串和)和字节数组的互转
+     */
+    @SuppressWarnings("unused")
+    private static String md5Hex(String str) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] digest = md.digest(str.getBytes());
+            return new String(new Hex().encode(digest));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
+            return "";
+        }
+    }
+
+    /**
+     * 加盐MD5加密
+     */
+    public static String getSaltMD5(String password) {
+        // 生成一个16位的随机数
+        Random random = new Random();
+        StringBuilder sBuilder = new StringBuilder(16);
+        sBuilder.append(random.nextInt(99999999)).append(random.nextInt(99999999));
+        int len = sBuilder.length();
+        if (len < 16) {
+            for (int i = 0; i < 16 - len; i++) {
+                sBuilder.append("0");
+            }
+        }
+        // 生成最终的加密盐
+        String Salt = sBuilder.toString();
+        password = md5Hex(password + Salt);
+        char[] cs = new char[48];
+        for (int i = 0; i < 48; i += 3) {
+            cs[i] = password.charAt(i / 3 * 2);
+            char c = Salt.charAt(i / 3);
+            cs[i + 1] = c;
+            cs[i + 2] = password.charAt(i / 3 * 2 + 1);
+        }
+        return String.valueOf(cs);
+    }
+
+    /**
+     * 验证加盐后是否和原文一致
+     */
+    public static boolean getSaltverifyMD5(String password, String md5str) {
+        char[] cs1 = new char[32];
+        char[] cs2 = new char[16];
+        for (int i = 0; i < 48; i += 3) {
+            cs1[i / 3 * 2] = md5str.charAt(i);
+            cs1[i / 3 * 2 + 1] = md5str.charAt(i + 2);
+            cs2[i / 3] = md5str.charAt(i + 1);
+        }
+        String Salt = new String(cs2);
+        return md5Hex(password + Salt).equals(String.valueOf(cs1));
     }
 
 }

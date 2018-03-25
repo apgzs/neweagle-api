@@ -1,5 +1,6 @@
 package com.neweagle.api.comm.utils;
 
+import javax.print.DocFlavor;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
@@ -10,6 +11,9 @@ import java.util.Set;
  * 签名工具类
  */
 public class SignUtil {
+
+    private static final String SECRET="5718C860B0EC82C3CA77233779E73A365";
+
     /**
      * 生成签名
      * @param params
@@ -19,6 +23,10 @@ public class SignUtil {
      */
     public static String createSign(Map<String, Object> params, boolean encode)
             throws UnsupportedEncodingException {
+        return MD5Utils.getSaltMD5(getStringFromMap(params,encode)+SECRET);
+    }
+
+    private static String getStringFromMap(Map<String, Object> params, boolean encode) throws UnsupportedEncodingException{
         Set<String> keysSet = params.keySet();
         Object[] keys = keysSet.toArray();
         Arrays.sort(keys);
@@ -42,9 +50,9 @@ public class SignUtil {
                 temp.append(valueString);
             }
         }
-
-        return MD5Utils.MD5(temp.toString()).toUpperCase();
+        return temp.toString();
     }
+
 
     /**
      * 验签
@@ -57,7 +65,8 @@ public class SignUtil {
         long nowTime = DateHelper.getCurrentTimeMillis();
         long requestTime = Long.parseLong(params.get("timestamp").toString());
         if (nowTime-requestTime<=expire&&nowTime-requestTime>0){
-            if (createSign(params,true).endsWith(sign)){
+            String password = getStringFromMap(params,true)+SECRET;
+            if (MD5Utils.getSaltverifyMD5(password,sign)){
                 return true;
             }
         }

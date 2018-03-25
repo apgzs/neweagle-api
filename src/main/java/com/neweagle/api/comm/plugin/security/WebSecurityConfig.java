@@ -34,8 +34,7 @@ public class WebSecurityConfig extends AbstractWebSecurityConfig {
         security
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,
-                        "/sys/appuser/*/token",
-                        "/sys/appuser/v1/register"
+                        "/sys/appuser/*/token"
                         ).permitAll();
         super.configure(security);
     }
