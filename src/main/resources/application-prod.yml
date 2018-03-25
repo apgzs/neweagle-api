@@ -22,6 +22,32 @@ spring:
       listener:
            concurrency: 2      #最小消息监听线程数
            max-concurrency: 2  #最大消息监听线程数
+  # Quartz
+  quartz:
+      #相关属性配置
+      properties:
+        org:
+          quartz:
+            scheduler:
+              instanceName: NewEagleScheduler
+              instanceId: AUTO
+            jobStore:
+              class: org.quartz.impl.jdbcjobstore.JobStoreTX
+              driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+              tablePrefix: n_qrtz_
+              isClustered: true
+              clusterCheckinInterval: 10000
+              useProperties: false
+            threadPool:
+              class: org.quartz.simpl.SimpleThreadPool
+              threadCount: 10
+              threadPriority: 5
+              threadsInheritContextClassLoaderOfInitializingThread: true
+      #数据库方式
+      job-store-type: jdbc
+      #初始化表结构
+      jdbc:
+        initialize-schema: never
   # Datasource
   datasource:
         type: com.alibaba.druid.pool.DruidDataSource

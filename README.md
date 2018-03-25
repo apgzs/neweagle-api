@@ -32,11 +32,11 @@
 - druid
 - jasypt
 - rabbitmq
+- quartz【分布式形式，持久化】
 - .....
 
 持续更新中。。。
 - elasticsearch
-- lts分布式任务调度
 - 基于vue构建的前后端分离的管理权限管理平台
 
 - 分模块化
