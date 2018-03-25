@@ -21,7 +21,7 @@ public class SignTest {
         long nowTime =  DateHelper.getCurrentTimeMillis();
         log.info("当前时间戳："+nowTime);
         Map<String,Object> map = new HashMap();
-        map.put("mobile","13215096396");
+        map.put("mobile","18000000000");
         map.put("verifyCode","2131");
         map.put("password","123123");
         map.put("timestamp",nowTime);
