@@ -39,7 +39,7 @@
 - .....
 
 持续更新中。。。
-- 多数据源、读写分离
+- shardingjdbc多数据源、读写分离【等待官方兼容springboot2】
 - elasticsearch
 - 基于vue构建的前后端分离的管理权限管理平台
 
