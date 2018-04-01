@@ -122,4 +122,11 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+# Aliyun
+aliyun:
+  oss:
+    endpoint: endpoint
+    accessKeyId: accessKeyId
+    accessKeySecret: accessKeySecret
+
 

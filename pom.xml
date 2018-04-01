@@ -58,6 +58,7 @@
 		<docker.image.prefix>neweagle</docker.image.prefix>
 		<jasypt-spring-boot-starter.version>2.0.0</jasypt-spring-boot-starter.version>
 		<dockerfile-maven-plugin.version>1.3.6</dockerfile-maven-plugin.version>
+		<aliyun-spring-boot-starter-oss.version>1.0.0</aliyun-spring-boot-starter-oss.version>
 	</properties>
 
 	<dependencies>
@@ -152,7 +153,12 @@
 			<artifactId>jasypt-spring-boot-starter</artifactId>
 			<version>${jasypt-spring-boot-starter.version}</version>
 		</dependency>
-
+		<!--阿里云oss  https://gitee.com/cn-src/aliyun-oss-->
+		<dependency>
+			<groupId>cn.javaer</groupId>
+			<artifactId>aliyun-spring-boot-starter-oss</artifactId>
+			<version>${aliyun-spring-boot-starter-oss.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
