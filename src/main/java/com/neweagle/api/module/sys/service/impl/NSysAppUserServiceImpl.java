@@ -3,10 +3,9 @@ package com.neweagle.api.module.sys.service.impl;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import com.neweagle.api.comm.exception.UserExistException;
-import com.neweagle.api.module.sys.entity.AppUser;
-import com.neweagle.api.module.sys.mapper.AppUserMapper;
-import com.neweagle.api.module.sys.service.IAppUserService;
-import org.omg.CORBA.UserException;
+import com.neweagle.api.module.sys.entity.NSysAppUser;
+import com.neweagle.api.module.sys.mapper.NSysAppUserMapper;
+import com.neweagle.api.module.sys.service.INSysAppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,11 +14,11 @@ import java.util.List;
 
 /**
  *
- * AppUser 表数据服务层接口实现类
+ * NSysAppUser 表数据服务层接口实现类
  *
  */
 @Service
-public class AppUserServiceImpl extends ServiceImpl<AppUserMapper, AppUser> implements IAppUserService {
+public class NSysAppUserServiceImpl extends ServiceImpl<NSysAppUserMapper, NSysAppUser> implements INSysAppUserService {
 	/**
 	 * 密码加密
 	 */
@@ -32,13 +31,13 @@ public class AppUserServiceImpl extends ServiceImpl<AppUserMapper, AppUser> impl
 	}
 
 	@Override
-	public List<AppUser> selectListBySQL() {
+	public List<NSysAppUser> selectListBySQL() {
 		return baseMapper.selectListBySQL();
 	}
 
 	@Override
 	public boolean register(String mobile, String verifyCode, String password) throws Exception {
-		AppUser user = new AppUser();
+		NSysAppUser user = new NSysAppUser();
 		user.setUsername(mobile);
 		if (baseMapper.selectOne(user)!=null){
 			throw new UserExistException();

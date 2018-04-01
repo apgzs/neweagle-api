@@ -1,11 +1,9 @@
-package com.neweagle.api.module.sys.controller;
+package com.neweagle.api.module.sys.web;
 
 import com.neweagle.api.comm.plugin.security.TokenUtil;
 import com.neweagle.api.comm.web.base.SuperController;
 import com.neweagle.api.comm.web.json.JsonResult;
-import com.neweagle.api.module.sys.entity.AppUser;
-import com.neweagle.api.module.sys.mq.MqSender;
-import com.neweagle.api.module.sys.service.IAppUserService;
+import com.neweagle.api.module.sys.service.INSysAppUserService;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +25,11 @@ import java.util.Map;
  */
 @Validated
 @RestController
-@RequestMapping("/sys/appuser")
-public class AppUserController extends SuperController {
+@RequestMapping("/api/sys/appuser")
+public class NSysAppUserController extends SuperController {
 
     @Autowired
-    private IAppUserService appUserService;
+    private INSysAppUserService appUserService;
     /**
      * 权限管理
      */

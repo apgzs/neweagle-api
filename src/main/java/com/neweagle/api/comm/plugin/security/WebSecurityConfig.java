@@ -21,9 +21,9 @@ public class WebSecurityConfig extends AbstractWebSecurityConfig {
         //忽略权限校验的访问路径
         web.ignoring()
                 .antMatchers(
-                        "/sys/appuser/*/token",
-                        "/sys/appuser/*/register",
-                        "/sys/appuser/*/refresh-token",
+                        "/api/sys/appuser/*/token",
+                        "/api/sys/appuser/*/register",
+                        "/api/sys/appuser/*/refresh-token",
                         "/druid/**"
 
                 );

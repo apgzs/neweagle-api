@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Security AppUser
+ * Security NSysAppUser
  *
  * @author tjp
  */

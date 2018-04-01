@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @TableName("n_sys_app_user")
-public class AppUser extends SuperEntity<AppUser> {
+public class NSysAppUser extends SuperEntity<NSysAppUser> {
     /**
      * 用户名
      */

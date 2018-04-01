@@ -1,22 +1,20 @@
 package com.neweagle.api.module.sys.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.neweagle.api.module.sys.entity.AppUser;
-import org.hibernate.validator.constraints.Length;
+import com.neweagle.api.module.sys.entity.NSysAppUser;
 
-import javax.validation.constraints.Pattern;
 import java.util.List;
 
 /**
  *
- * AppUser 表数据服务层接口
+ * NSysAppUser 表数据服务层接口
  *
  */
-public interface IAppUserService extends IService<AppUser> {
+public interface INSysAppUserService extends IService<NSysAppUser> {
 
 	boolean deleteAll();
 
-	public List<AppUser> selectListBySQL();
+	public List<NSysAppUser> selectListBySQL();
 
 	/**
 	 * 注册

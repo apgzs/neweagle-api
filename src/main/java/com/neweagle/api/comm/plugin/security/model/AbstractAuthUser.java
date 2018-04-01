@@ -3,7 +3,7 @@ package com.neweagle.api.comm.plugin.security.model;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- * 描述：Security AppUser
+ * 描述：Security NSysAppUser
  */
 public abstract class AbstractAuthUser implements UserDetails {
 

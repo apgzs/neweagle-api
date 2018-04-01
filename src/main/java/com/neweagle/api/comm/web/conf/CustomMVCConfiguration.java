@@ -27,7 +27,7 @@ public class CustomMVCConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         // 添加一个拦截器
-        registry.addInterceptor(new SignInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new SignInterceptor()).addPathPatterns("/api/**");
     }
 
     @Bean

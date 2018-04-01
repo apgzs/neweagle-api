@@ -276,7 +276,7 @@ public final class Reflections {
      * 通过反射, 获得Class定义中声明的泛型参数的类型, 注意泛型必须定义在父类处
      * 如无法找到, 返回Object.class.
      * eg.
-     * public UserDao extends HibernateDao<AppUser>
+     * public UserDao extends HibernateDao<NSysAppUser>
      *
      * @param <T>   the type parameter
      * @param clazz The class to introspect
@@ -291,7 +291,7 @@ public final class Reflections {
      * 通过反射, 获得Class定义中声明的父类的泛型参数的类型.
      * 如无法找到, 返回Object.class.
      * <p>
-     * 如public UserDao extends HibernateDao<AppUser,Long>
+     * 如public UserDao extends HibernateDao<NSysAppUser,Long>
      *
      * @param clazz clazz The class to introspect
      * @param index the Index of the generic declaration,start from 0.
