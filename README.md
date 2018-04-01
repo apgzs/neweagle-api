@@ -12,6 +12,10 @@
   </a>
 </p> 
 
+**SRC** 
+- Gitee :https://gitee.com/xinyingkeji/neweagle-api
+- Github:https://github.com/apgzs/neweagle-api
+
 **适用对象** 
 - 应小伙伴反应现在好多框架搞得好复杂看不懂、很多中小项目不需要用到这种框架，公司以前的项目也是很杂乱、有时候只是想舒舒服服地写个接口都无从下手。SO你如果有遇到这种问题这个项目也许能帮得到你！
 
@@ -39,9 +43,9 @@
 - .....
 
 持续更新中。。。
-- 多数据源、读写分离
+- shardingjdbc多数据源、读写分离【等待官方兼容springboot2】
 - elasticsearch
-- 基于vue构建的前后端分离的管理权限管理平台
+- 基于vue构建的前后端分离的权限管理平台
 
 - 分模块化
 
